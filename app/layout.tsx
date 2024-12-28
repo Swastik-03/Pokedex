@@ -16,8 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <main className="container mx-auto px-4 py-8 bg-black">
+      <body className={inter.className} >
+        <main className="container max-w-full px-4 py-8 bg-black">
           {children}
         </main>
       </body>
