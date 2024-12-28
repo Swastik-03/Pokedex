@@ -62,9 +62,9 @@ The app should now be accessible at ```http://localhost:3000```
 
 The app fetches data from the PokéAPI, which provides information about Pokémon, their types, and other details. The main endpoints used are:
 
-* /pokemon: Fetches a list of Pokémon.
-* /type: Fetches a list of available Pokémon types.
-* /pokemon/{id}: Fetches detailed information about a specific Pokémon.
+* ```/pokemon```: Fetches a list of Pokémon.
+* ```/type```: Fetches a list of available Pokémon types.
+* ```/pokemon/{name}```: Fetches detailed information about a specific Pokémon.
 
 ### Features Breakdown
 
