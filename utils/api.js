@@ -11,7 +11,7 @@ export async function fetchPokemonList(page) {
         return {
           name: pokemon.name,
           url: pokemon.url,
-          image: data?.sprites?.other?.['official-artwork']?.front_shiny,
+          image: details?.sprites?.other?.['official-artwork']?.front_shiny,
           types: details.types.map((type) => type.type.name)
         }
       })
