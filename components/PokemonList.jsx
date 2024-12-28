@@ -5,7 +5,7 @@ import PokemonCard from './PokemonCard'
 import SearchBar from './SearchBar'
 import TypeFilter from './TypeFilter'
 import Pagination from './Pagination'
-import { Loader } from 'lucide-react'
+import { Loader} from 'lucide-react'
 
 const ITEMS_PER_PAGE = 12;
 
@@ -20,6 +20,9 @@ export default function PokemonList() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedTypes, setSelectedTypes] = useState([])
   const [favorites, setFavorites] = useState([])
+  const [showFavorites, setShowFavorites] = useState(false);
+
+
 
   useEffect(() => {
     const loadAllPokemon = async () => {
@@ -85,17 +88,26 @@ export default function PokemonList() {
     }
   }, [])
 
-  useEffect(() => {
+  
+useEffect(() => {
     console.log('Filtering Pokemon...')
-    const filtered = allPokemon.filter(pokemon => 
+    let filtered = allPokemon.filter(pokemon => 
       pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (selectedTypes.length === 0 || selectedTypes.every(type => pokemon.types.includes(type)))
-    )
-    setFilteredPokemon(filtered)
-    setTotalPages(Math.ceil(filtered.length / ITEMS_PER_PAGE))
-    setCurrentPage(1)
-    console.log(`Filtered Pokemon count: ${filtered.length}`)
-  }, [allPokemon, searchTerm, selectedTypes])
+    );
+  
+    // Ensure favorites is an array before filtering
+    if (showFavorites && Array.isArray(favorites)) {
+      filtered = filtered.filter(pokemon => favorites.includes(pokemon.name));
+    }
+  
+    setFilteredPokemon(filtered);
+    setTotalPages(Math.ceil(filtered.length / ITEMS_PER_PAGE));
+    setCurrentPage(1);
+    console.log(`Filtered Pokemon count: ${filtered.length}`);
+  }, [allPokemon, searchTerm, selectedTypes, showFavorites, favorites]);
+  
+
 
   useEffect(() => {
     console.log(`Updating displayed Pokemon for page ${currentPage}`)
@@ -124,8 +136,9 @@ export default function PokemonList() {
     <div className="space-y-8">
       <div className="rounded-lg shadow-md p-6 space-y-4">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <TypeFilter selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} />
+        <TypeFilter selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} showFavorites={showFavorites} setShowFavorites={setShowFavorites} />
       </div>
+      {console.log(favorites)}
       {displayedPokemon.length === 0 ? (
         <div className="text-center text-gray-600">No Pokemon found matching your criteria.</div>
       ) : (
@@ -138,7 +151,7 @@ export default function PokemonList() {
               toggleFavorite={toggleFavorite}
             />
           ))}
-        </div>
+        </div>    
       )}
       <Pagination
         currentPage={currentPage}
