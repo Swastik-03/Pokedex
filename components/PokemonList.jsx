@@ -27,7 +27,7 @@ export default function PokemonList() {
         setLoading(true)
         console.log('Starting to fetch Pokemon data...')
         let allPokemonList = []
-        let nextUrl = 'https://pokeapi.co/api/v2/pokemon?limit=20'  // Increased limit for faster loading
+        let nextUrl = 'https://pokeapi.co/api/v2/pokemon?limit=300'  // Increased limit for faster loading
 
         while (nextUrl) {
           console.log(`Fetching from URL: ${nextUrl}`)
