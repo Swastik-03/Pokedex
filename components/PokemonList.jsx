@@ -48,7 +48,7 @@ export default function PokemonList() {
               return {
                 name: pokemon.name,
                 url: pokemon.url,
-                image: details.sprites.front_default,
+                image: details?.sprites?.other?.['official-artwork']?.front_shiny,
                 types: details.types.map((type) => type.type.name)
               }
             })
@@ -122,7 +122,7 @@ export default function PokemonList() {
 
   return (
     <div className="space-y-8">
-      <div className="bg-white rounded-lg shadow-md p-6 space-y-4">
+      <div className="rounded-lg shadow-md p-6 space-y-4">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <TypeFilter selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} />
       </div>

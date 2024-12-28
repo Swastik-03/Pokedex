@@ -22,7 +22,7 @@ export default function TypeFilter({ selectedTypes, setSelectedTypes }) {
 
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-2">Filter by Type:</h3>
+      <h3 className="text-lg font-semibold mb-2"><span className='text-white'>Filter by</span> <span className='text-red-500'>Type:</span></h3>
       <div className="flex flex-wrap gap-2">
         {types.map(type => (
           <button
@@ -30,7 +30,7 @@ export default function TypeFilter({ selectedTypes, setSelectedTypes }) {
             onClick={() => handleTypeToggle(type)}
             className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
               selectedTypes.includes(type)
-                ? 'bg-blue-500 text-white'
+                ? 'bg-red-500 text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >

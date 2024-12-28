@@ -11,7 +11,7 @@ export async function fetchPokemonList(page) {
         return {
           name: pokemon.name,
           url: pokemon.url,
-          image: details.sprites.front_default,
+          image: data?.sprites?.other?.['official-artwork']?.front_shiny,
           types: details.types.map((type) => type.type.name)
         }
       })
@@ -34,7 +34,7 @@ export async function fetchPokemonList(page) {
   
     return {
       name: data.name,
-      image: data.sprites.front_default,
+      image: data?.sprites?.other?.['official-artwork']?.front_shiny,
       types: data.types.map((type) => type.type.name),
       abilities: data.abilities.map((ability) => ability.ability.name),
       stats: data.stats.map((stat) => ({
