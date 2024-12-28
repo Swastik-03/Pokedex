@@ -7,7 +7,7 @@ import TypeFilter from './TypeFilter'
 import Pagination from './Pagination'
 import { Loader } from 'lucide-react'
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 12;
 
 export default function PokemonList() {
   const [allPokemon, setAllPokemon] = useState([])
@@ -27,7 +27,7 @@ export default function PokemonList() {
         setLoading(true)
         console.log('Starting to fetch Pokemon data...')
         let allPokemonList = []
-        let nextUrl = 'https://pokeapi.co/api/v2/pokemon?limit=10000'  // Increased limit for faster loading
+        let nextUrl = 'https://pokeapi.co/api/v2/pokemon?limit=20'  // Increased limit for faster loading
 
         while (nextUrl) {
           console.log(`Fetching from URL: ${nextUrl}`)
@@ -57,9 +57,9 @@ export default function PokemonList() {
           console.log(`Total Pokemon fetched: ${allPokemonList.length}`)
           nextUrl = data.next
           
-          // Break after fetching 500 Pokemon to avoid overloading
-          if (allPokemonList.length >= 500) {
-            console.log('Reached 500 Pokemon, stopping fetch')
+          // Break after fetching 2000 Pokemon to avoid overloading
+          if (allPokemonList.length >= 2000) {
+            console.log('Reached 2000 Pokemon, stopping fetch')
             break
           }
         }
@@ -115,7 +115,7 @@ export default function PokemonList() {
 
   if (loading) return (
     <div className="flex justify-center items-center h-64">
-      <Loader className="w-12 h-12 animate-spin text-blue-500" />
+      <Loader className="w-12 h-12 animate-spin text-red-500" />
     </div>
   )
   if (error) return <div className="text-red-500 text-center">{error}</div>
@@ -148,4 +148,3 @@ export default function PokemonList() {
     </div>
   )
 }
-

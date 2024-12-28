@@ -29,13 +29,12 @@ export default function PokemonCard({ pokemon, isFavorite, toggleFavorite }) {
           alt={pokemon.name}
           width={200}
           height={200}
-          className="mx-auto w-40 h-40 object-contain"
+          className="mx-auto w-52 h-52 object-contain"
           loading="lazy"
           onError={(e) => {
             e.currentTarget.src = '/placeholder.svg?height=200&width=200'
           }}
         />
-        <h2 className="text-xl font-semibold text-center mt-4 capitalize">{pokemon.name}</h2>
         <div className="flex justify-center mt-2 flex-wrap gap-2">
           {pokemon.types.map(type => (
             <span
@@ -46,6 +45,8 @@ export default function PokemonCard({ pokemon, isFavorite, toggleFavorite }) {
             </span>
           ))}
         </div>
+        <h2 className="text-xl font-semibold text-center mt-4 capitalize">{pokemon.name}</h2>
+
         <button
           className={`mt-4 w-full py-2 px-4 rounded-full flex items-center justify-center text-gray-700`}
           onClick={(e) => {
